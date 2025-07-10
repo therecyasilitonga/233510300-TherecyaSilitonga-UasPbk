@@ -31,20 +31,31 @@
 
       <!-- Form Pembayaran -->
       <form @submit.prevent="prosesPembayaran" class="space-y-4">
-        <div>
-          <label class="font-semibold block mb-1">Pilih Metode Pembayaran:</label>
-          <select v-model="metode" class="w-full border rounded p-2">
-            <optgroup label="Kartu">
-              <option value="kartu-bri">Kartu BRI</option>
-              <option value="kartu-bca">Kartu BCA</option>
-              <option value="kartu-bni">Kartu BNI</option>
-              <option value="kartu-mandiri">Kartu Mandiri</option>
-            </optgroup>
-            <option value="virtual">Virtual Account</option>
-            <option value="cod">COD (Bayar di Tempat)</option>
-            <option value="qris">QRIS</option>
-          </select>
-        </div>
+        <!-- Select Metode Pembayaran -->
+<div>
+  <label class="block text-sm font-medium text-white mb-1">Pilih Metode Pembayaran:</label>
+  <div class="relative">
+    <select v-model="metode" class="modern-select">
+      <optgroup label="Kartu">
+        <option value="kartu-bri">💳 Kartu BRI</option>
+        <option value="kartu-bca">💳 Kartu BCA</option>
+        <option value="kartu-bni">💳 Kartu BNI</option>
+        <option value="kartu-mandiri">💳 Kartu Mandiri</option>
+      </optgroup>
+      <option value="virtual">🏦 Virtual Account</option>
+      <option value="cod">🚚 COD (Bayar di Tempat)</option>
+      <option value="qris">📱 QRIS</option>
+    </select>
+  </div>
+</div>
+
+<!-- Tombol Konfirmasi -->
+<button
+  type="submit"
+  class="confirm-button"
+>
+  ✅ Konfirmasi Pembayaran
+</button>
 
         <div v-if="metode.startsWith('kartu')" class="space-y-2">
           <input v-model="kartu.nama" placeholder="Nama di Kartu" class="w-full border p-2 rounded" />
@@ -55,12 +66,7 @@
           </div>
         </div>
 
-        <button
-          type="submit"
-          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
-        >
-          Konfirmasi Pembayaran
-        </button>
+        
       </form>
     </div>
   </div>
@@ -143,6 +149,83 @@ function prosesPembayaran() {
 input {
   outline: none;
 }
+
+input,
+select {
+  outline: none;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+  background-color: #fff;
+}
+
+select.modern-select {
+  background-image: linear-gradient(to right, #d1fae5, #f0fdf4);
+  font-weight: 500;
+  color: #065f46;
+}
+
+select.modern-select option {
+  padding: 0.5rem;
+}
+
+/* Modern Select Dropdown */
+.modern-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  color: #1f2937;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modern-select:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+  background-color: white;
+  color: #111827;
+}
+
+/* Tombol Konfirmasi Modern */
+.confirm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(to right, #10b981, #059669);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.confirm-button:hover {
+  background: linear-gradient(to right, #059669, #047857);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(5, 150, 105, 0.4);
+}
+
+
+
 </style>
 
 
