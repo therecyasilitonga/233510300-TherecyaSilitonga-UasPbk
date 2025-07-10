@@ -52,11 +52,22 @@ html, body {
 
 .app-footer {
   text-align: center;
-  padding: 10px;
+  padding: 12px 10px;
   background-color: rgba(0, 0, 0, 0.7);
   font-size: 0.85rem;
   color: #ddd;
   width: 100%;
 }
-</style>
 
+/* Responsif untuk perangkat mobile */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 12px;
+  }
+
+  .app-footer {
+    font-size: 0.75rem;
+    padding: 10px 5px;
+  }
+}
+</style>
