@@ -1,18 +1,22 @@
 <template>
   <div class="login-page">
     <div class="login-card bounce-in">
-      <h1>Login </h1>
+      <h1>Login</h1>
       <form @submit.prevent="login">
         <input v-model="username" type="text" placeholder="Username" required />
         <input v-model="password" type="password" placeholder="Password" required />
         <button type="submit" class="glow-button">Masuk</button>
       </form>
       <p v-if="error" class="error shake">{{ error }}</p>
+      <p class="register-text">
+        Belum punya akun?
+        <router-link to="/register" class="register-link">Daftar</router-link>
+      </p>
     </div>
   </div>
 </template>
 
-<script>
+<<script>
 export default {
   name: 'LoginPage',
   data() {
@@ -24,7 +28,13 @@ export default {
   },
   methods: {
     login() {
-      if (this.username === 'therecyasilitonga' && this.password === '233510300') {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+
+      if (
+        storedUser &&
+        this.username === storedUser.username &&
+        this.password === storedUser.password
+      ) {
         localStorage.setItem('isLoggedIn', 'true');
         this.$router.push('/beranda');
       } else {
@@ -38,10 +48,7 @@ export default {
 <style scoped>
 .login-page {
   min-height: 100vh;
-  background: linear-gradient(
-      rgba(5, 150, 105, 0.85),
-      rgba(15, 118, 110, 0.9)
-    ),
+  background: linear-gradient(rgba(5, 150, 105, 0.85), rgba(15, 118, 110, 0.9)),
     url('/images/bg-money.jpg') no-repeat center center;
   background-size: cover;
   display: flex;
@@ -50,7 +57,6 @@ export default {
   animation: gradientFlow 12s ease infinite;
 }
 
-/* Card login */
 .login-card {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(16px);
@@ -64,14 +70,12 @@ export default {
   animation: bounceIn 0.8s ease;
 }
 
-/* Animasi gradasi */
 @keyframes gradientFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Bounce animasi saat muncul */
 @keyframes bounceIn {
   0% { opacity: 0; transform: scale(0.7); }
   60% { transform: scale(1.05); }
@@ -79,7 +83,6 @@ export default {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* Input */
 input {
   width: 100%;
   padding: 0.8rem;
@@ -103,7 +106,6 @@ input::placeholder {
   color: #d1fae5;
 }
 
-/* Tombol */
 button.glow-button {
   width: 100%;
   padding: 0.8rem;
@@ -124,7 +126,6 @@ button.glow-button {
   transform: scale(1.04);
 }
 
-/* Error */
 .error {
   color: #f87171;
   margin-top: 1rem;
@@ -136,5 +137,22 @@ button.glow-button {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-6px); }
   40%, 80% { transform: translateX(6px); }
+}
+
+.register-text {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #bbf7d0;
+}
+
+.register-link {
+  color: #34d399;
+  text-decoration: underline;
+  margin-left: 0.25rem;
+  cursor: pointer;
+}
+
+.register-link:hover {
+  color: #6ee7b7;
 }
 </style>

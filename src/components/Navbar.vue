@@ -45,11 +45,27 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #33573e; /* fresh green */
+  background: linear-gradient(to right, #14532d, #166534); /* dark green gradient */
+  backdrop-filter: blur(12px);
   padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.7s ease;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .logo {
@@ -57,15 +73,21 @@ export default {
   align-items: center;
   gap: 0.5rem;
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #ffffff;
+  font-size: 1.4rem;
+  color: #d1fae5;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .logo img {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: rotate(6deg) scale(1.05);
 }
 
 .nav-links {
@@ -76,33 +98,53 @@ export default {
 
 .nav-links a,
 .nav-links .login-link {
-  color: #ffffff;
+  color: #ecfdf5;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, transform 0.2s;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-links a::after,
+.nav-links .login-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #bbf7d0;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links .login-link:hover::after {
+  width: 100%;
 }
 
 .nav-links a:hover,
 .nav-links .login-link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
+  color: #a7f3d0;
+  transform: translateY(-1px);
 }
 
 button {
-  background-color: #ef4444; /* red */
-  color: #ffffff;
+  background: linear-gradient(to right, #ef4444, #dc2626);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
   border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.2s;
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.4);
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #dc2626;
+  background: linear-gradient(to right, #f87171, #f43f5e);
   transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(252, 165, 165, 0.4);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="home-container animate-container">
-    <img src="/images/logo.png" alt="Logo Jamu" class="logo animate-logo" />
+    <img src="/images/logo.png" alt="Logo Perabotan" class="logo animate-logo" />
     <h1 class="animate-text">
       <span>Selamat Datang di</span><br />
       <strong>Toko Perabotan <span class="highlight">Nusantara</span></strong>

@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage.vue'
 import ProductList from '../pages/ProductList.vue'
 import CartPage from '../pages/CartPage.vue'
 import CheckoutPage from '../pages/CheckoutPage.vue'
+import RegisterPage from '../pages/RegisterPage.vue'
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginPage
+  },
+  {
+    path: '/register', // Pindah ke atas sebelum wildcard
+    name: 'Register',
+    component: RegisterPage
   },
   {
     path: '/beranda',
@@ -39,7 +45,7 @@ const routes = [
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/beranda' // Jika path tidak ditemukan
+    redirect: '/beranda' // Harus di bagian paling bawah
   }
 ]
 
@@ -52,7 +58,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
 
-  if (to.name !== 'Login' && !isLoggedIn) {
+  if (to.name !== 'Login' && to.name !== 'Register' && !isLoggedIn) {
     next({ name: 'Login' })
   } else if (to.name === 'Login' && isLoggedIn) {
     next({ name: 'Beranda' })
