@@ -70,8 +70,3 @@ src/
 
 
 
-Proyek ini dibuat untuk keperluan edukasi dan dapat digunakan serta dimodifikasi secara bebas untuk tujuan pembelajaran dan pengembangan individu.
-
----
-
-Jika Anda ingin melihat demo aplikasi atau melakukan deployment ke platform seperti Netlify atau Vercel, cukup hubungi pengembang atau lakukan deploy melalui integrasi GitHub secara langsung.
